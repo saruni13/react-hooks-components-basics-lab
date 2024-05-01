@@ -8,15 +8,17 @@ test("renders without errors", () => {
 });
 
 test("renders the correct child components", () => {
-  const { container } = render(<App />);
+  render(<App />);
 
-  /*
-    Uncomment the line below to see the DOM elements being returned
-    by the App component in your terminal when you run the tests
-  */
-  // screen.debug();
+  // Check if navigation bar exists
+  const navElement = screen.getByRole("navigation");
+  expect(navElement).toBeInTheDocument();
 
-  expect(container.querySelector("nav")).toBeInTheDocument();
-  expect(container.querySelector("#home")).toBeInTheDocument();
-  expect(container.querySelector("#about")).toBeInTheDocument();
+  // Check if home component exists
+  const homeElement = screen.getByTestId("home");
+  expect(homeElement).toBeInTheDocument();
+
+  // Check if about component exists
+  const aboutElement = screen.getByTestId("about");
+  expect(aboutElement).toBeInTheDocument();
 });
